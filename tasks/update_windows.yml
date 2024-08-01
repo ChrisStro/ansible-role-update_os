@@ -1,0 +1,34 @@
+- name: Download needed Windows updates
+  ansible.windows.win_updates:
+    category_names: '*'
+    # - CriticalUpdates
+    # - SecurityUpdates
+    # - UpdateRollups
+    skip_optional: false
+    log_path: c:\windows\logs\ansible_windows_update.log
+    state: installed
+  register: update_result
+
+- name: Installed following updates
+  ansible.builtin.debug:
+    msg: "{{ update_result }}"
+  when: update_result.updates | length > 0
+
+- name: Reboot before install any updates
+  ansible.windows.win_reboot:
+  when: update_result.updates | length > 0
+
+- name: Installing Windows updates
+  ansible.windows.win_updates:
+    category_names: '*'
+    # - CriticalUpdates
+    # - SecurityUpdates
+    # - UpdateRollups
+    skip_optional: false
+    log_path: c:\windows\logs\ansible_windows_update.log
+    state: installed
+  register: update_result
+
+- name: Reboot windows server if required
+  ansible.windows.win_reboot:
+  when: update_result.reboot_required

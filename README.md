@@ -1,14 +1,8 @@
-# Ansible Role: samba_standalone
+# Ansible Role: update_os
 
-Ansible role for standalone samba-fileserver
+Ansible role for os updates/patching
 
-## Role Variables
+## Supported Operating Systems
 
-Available variables are listed below, along with default values (see `defaults/main.yml`):
-```yaml
-smb_users:
-  - name: smbadmin    # need to be present for ownershit
-    passwd: smbadmin
-  - name: smbaccess
-    passwd: smbaccess
-```
+- debian based distributions
+- windows

@@ -1,7 +1,7 @@
 - name: Update Debian based distributions
   when: ansible_facts.os_family == "Debian"
-  ansible.builtin.import_tasks: update_debian.yml
+  ansible.builtin.import_tasks: _update_debian.yml
 
 - name: Update Windows based machines
   when: ansible_facts.os_family == 'Windows'
-  ansible.builtin.import_tasks: update_windows.yml
+  ansible.builtin.import_tasks: _update_windows.yml

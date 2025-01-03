@@ -6,7 +6,7 @@ Ansible role for os updates/patching
 
 To prevent package updates:
 ```yaml
-update_os_hold_packages:
+update_os_debian_holds:
   - mypackage
 ```
 
